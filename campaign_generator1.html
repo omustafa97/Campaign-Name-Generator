@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaign, Ad Set & Ad Naming Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #result p {
+      margin: 5px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Campaign, Ad Set & Ad Naming Tool</h1>
+    
+    <!-- Campaign Section -->
+    <h2>Campaign Naming</h2>
+    <label for="campaignObjective">Objective:</label>
+    <select id="campaignObjective">
+      <option value="Conversions">Conversions</option>
+      <option value="Traffic">Traffic</option>
+      <option value="Engagement">Engagement</option>
+      <option value="Leads">Leads</option>
+      <option value="Awareness">Awareness</option>
+    </select>
+
+    <label for="campaignProduct">Product Name:</label>
+    <input type="text" id="campaignProduct" placeholder="Enter Product Name">
+
+    <label for="campaignDate">Date:</label>
+    <input type="text" id="campaignDate" placeholder="Enter Date (e.g., Jan2024)">
+
+    <!-- Ad Set Section -->
+    <h2>Ad Set Naming</h2>
+    <label for="adsetAudience">Audience:</label>
+    <input type="text" id="adsetAudience" placeholder="Enter Audience (e.g., Lookalike-1%)">
+
+    <label for="adsetPlacement">Placement:</label>
+    <select id="adsetPlacement">
+      <option value="FBF+IGS">FB Feed + IG Stories</option>
+      <option value="FBF+FBM">FB Feed + FB Messenger</option>
+      <option value="IGF+IGS">IG Feed + IG Stories</option>
+      <option value="All">All Placements</option>
+    </select>
+
+    <label for="adsetAge">Age Range:</label>
+    <input type="text" id="adsetAge" placeholder="Enter Age Range (e.g., 18-35)">
+
+    <!-- Ad Section -->
+    <h2>Ad Naming</h2>
+    <label for="adType">Ad Type:</label>
+    <select id="adType">
+      <option value="SIMG">Single Image</option>
+      <option value="VID">Video</option>
+      <option value="CAR">Carousel</option>
+      <option value="COL">Collection</option>
+    </select>
+
+    <label for="adDetails">Details:</label>
+    <input type="text" id="adDetails" placeholder="Enter Ad Details (e.g., Discount30)">
+
+    <button onclick="generateNames()">Generate Names</button>
+
+    <div id="result">
+      <h3>Generated Names:</h3>
+      <p id="campaignName">Campaign: </p>
+      <p id="adsetName">Ad Set: </p>
+      <p id="adName">Ad: </p>
+    </div>
+  </div>
+
+  <script>
+    function generateNames() {
+      // Campaign Name
+      const campaignObjective = document.getElementById('campaignObjective').value;
+      const campaignProduct = document.getElementById('campaignProduct').value.trim();
+      const campaignDate = document.getElementById('campaignDate').value.trim();
+
+      const campaignName = `${campaignObjective}_${campaignProduct}_${campaignDate}`;
+      document.getElementById('campaignName').textContent = `Campaign: ${campaignName}`;
+
+      // Ad Set Name
+      const adsetAudience = document.getElementById('adsetAudience').value.trim();
+      const adsetPlacement = document.getElementById('adsetPlacement').value.trim();
+      const adsetAge = document.getElementById('adsetAge').value.trim();
+
+      const adsetName = `${campaignProduct}_${adsetAudience}_${adsetPlacement}_${adsetAge}`;
+      document.getElementById('adsetName').textContent = `Ad Set: ${adsetName}`;
+
+      // Ad Name
+      const adType = document.getElementById('adType').value.trim();
+      const adDetails = document.getElementById('adDetails').value.trim();
+
+      const adName = `${campaignProduct}_${adType}_${adDetails}`;
+      document.getElementById('adName').textContent = `Ad: ${adName}`;
+    }
+  </script>
+</body>
+</html>
